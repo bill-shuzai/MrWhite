@@ -1,0 +1,156 @@
+
+/*============	login	=============*/
+
+.login {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background-color: rgb(56,67,81);
+		}
+
+		.login .login-wrap {
+			position: relative;
+			max-width: 380px;
+			margin: 200px auto;
+			background-color: white;
+			padding: 100px 40px 40px;
+			border-radius: 10px;
+		}
+
+		.login .avatar {
+			width: 140px;
+			height: 140px;
+			position: absolute;
+			top: -80px;
+			left: 50%;
+			margin-left: -70px;
+			border-radius: 50%;
+			border:10px solid white;
+			box-shadow: 1px 1px 5px #ccc;
+
+		}
+
+
+
+/*============	sidebar	=============*/
+
+.aside {
+			position: fixed;
+			height: 100%;
+			width: 180px;
+			top: 0;
+			left: 0;
+			background-color: rgb(56,67,81);
+		}
+		
+		.aside .profile {
+			padding: 20px;
+			text-align: center;	
+			background-color: rgb(46,56,69);
+		}
+
+		.aside .avatar {
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			border: 4px solid white;
+			box-shadow: 1px 1px 2px #ccc;
+		}
+
+		.aside .name {
+			font-size: 20px;
+			text-shadow: 1px 1px 2px;
+			font-weight: normal;
+			color: rgb(170,176,194);
+		}
+
+		.aside .nav {
+			padding: 20px 0;
+		}
+		
+		.aside .nav a {
+			color: rgb(170,176,194);
+		}
+
+		.aside .nav .active > a {
+			color: white;
+			background-color: rgb(46,56,69);
+		}
+		
+		.aside .nav a:hover,.aside .nav a:focus {
+			color: white;
+			background-color: rgb(46,56,69); 
+		}
+		.aside .nav ul {
+			padding: 0;
+			list-style: none;
+			box-shadow: inset 0 0px 3px black;
+			background-color: rgb(46,56,69);
+		}
+
+		.aside .nav>li a i:first-child {
+			padding-right: 10px;
+			font-size: 14px;
+		}
+		
+		.aside .nav ul a {
+			display: block;
+			padding: 10px;
+			padding-left: 60px;
+			text-decoration: none;
+		}
+
+		.aside .nav ul a:hover,
+		.aside .nav ul .active a {
+			color: white;
+			background-color: rgb(36,46,59); 
+		}
+
+
+		.aside .nav .fa-angle-right {
+			float: right;
+			transform: rotate(90deg);
+			transition: transform 0.3s;
+			font-size: 16px;
+			line-height: 20px;
+		}
+
+		.aside .nav .collapsed .fa-angle-right {
+			float: right;
+			transform: rotate(0);
+		}
+
+
+		/*============	navbar	=============*/
+
+		.main {
+			position: relative;
+			overflow: hidden;
+			min-width: 844px;
+			min-height: 100vh;
+			padding: 70px 5px 20px 185px;
+		}
+		.main .navbar {
+			position: fixed;
+			left: 180px;
+			top: 0;
+			right: 0;
+			z-index: 10;
+			background-color: #fff;
+			border-bottom: 1px solid #eee;
+			padding: 0 15px 0 20px;
+
+		}
+
+		.main .navbar button {
+			color: rgb(56,67,81);
+			margin-top: 10px;
+		}
+		
+		.main .navbar a {
+			color: rgb(56,67,81);
+		}
+
+		.main .navbar a i {
+			margin-right:5px; 
+		}
