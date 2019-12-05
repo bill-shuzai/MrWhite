@@ -154,3 +154,28 @@
 		.main .navbar a i {
 			margin-right:5px; 
 		}
+
+
+		/*======users form=====*/
+
+		.main > .container > .row > .user-form {
+			padding: 0	 60px 0 20px;
+		}
+
+		.main > .container > .row > .user-form  h2 {
+			font-size:20px;
+			font-weight:normal;
+			margin-bottom:30px;
+		}
+
+		.main > .container > .row > .user-form  .form-radio {
+			padding-left:90px;
+		}
+
+		.main > .container > .row > .user-form button {
+			background-color:rgb(55,67,83);
+			color:white;
+			width:100px;
+		}
+
+		/*=======user table========*/
