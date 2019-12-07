@@ -158,24 +158,42 @@
 
 		/*======users form=====*/
 
-		.main > .container > .row > .user-form {
-			padding: 0	 60px 0 20px;
+		.main > .container-fluid > .row > .user-form {
+			padding: 0  0 0 20px;
 		}
 
-		.main > .container > .row > .user-form  h2 {
+		.main > .container-fluid > .row > .user-form  h2 {
 			font-size:20px;
 			font-weight:normal;
 			margin-bottom:30px;
 		}
 
-		.main > .container > .row > .user-form  .form-radio {
+		.main > .container-fluid > .row > .user-form label {
+			display: inline-block;
+			width: 80px;
+		}
+
+		.main > .container-fluid > .row > .user-form  .form-radio {
 			padding-left:90px;
 		}
 
-		.main > .container > .row > .user-form button {
+		.main > .container-fluid > .row > .user-form button {
 			background-color:rgb(55,67,83);
 			color:white;
 			width:100px;
 		}
 
+		.main > .container-fluid .user-form .form-horizontal .form-radio {
+			padding-left: 60px;
+		}
+
 		/*=======user table========*/
+
+		.main > .container-fluid > .row > .user-table {
+			padding-top: 30px;
+			padding-right: 30px;
+		}
+
+		.main > .container-fluid > .row > .user-table > .table {
+			background-color: #fff;
+		}
