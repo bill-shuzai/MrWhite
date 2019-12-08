@@ -197,3 +197,20 @@
 		.main > .container-fluid > .row > .user-table > .table {
 			background-color: #fff;
 		}
+
+
+		/*===========posts part============*/
+
+		/*=============posts nav=============*/
+
+		
+
+		.main > .container-fluid > .row .form-inline {
+			padding: 25px 0;
+			
+		}
+		
+		.main > .container-fluid >  table {
+			background-color: #fff;
+		}
+		
