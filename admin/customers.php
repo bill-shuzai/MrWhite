@@ -28,26 +28,19 @@
 		</nav>
 
 		<div class="container-fluid">
-			<h3>查看帖子</h3>
+			<h3>个人用户</h3>
 			<div class="row">
 				<div class="col-md-8">
-					<form class="form-inline">
-						<select class="form-control">
-							<option>类型</option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-						</select>
-						<select class="form-control">
-							<option>职位</option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-						</select>
-						<button type="submit" class="btn btn-default">筛选</button>
+					<form class="form-inline" autocomplete="off" novalidate >
+						<div class="form-group">
+							<label for="username" class="col-sm-3 control-label sr-only">邮箱：</label>
 
+							<input type="text" class="form-control" id="username" placeholder="输入用户名">
+
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-default ">搜索</button>
+						</div>
 					</form>
 				</div>
 				<div class="col-md-4">
@@ -71,61 +64,49 @@
 						</ul>
 					</nav>
 				</div>
-			</div>
-			<table class="table table-striped table-bordered table-hover">
-				<tr>
-					<th>标题</th>
-					<th>内容</th>
-					<th>发布时间</th>
-					<th>招聘职位</th>
-					<th>发布方</th>
+			</div>	
+			<table class="table table-bordered table-striped table-hover">
+				<thead>
+					<tr>
+					<th>邮箱</th>
+					<th>联系电话</th>
+					<th>昵称</th>
+					<th class="text-center">简介</th>
+					<th>创建时间</th>
 					<th>状态</th>
-					<th>操作</th>
+					<th class="text-center">操作</th>
 				</tr>
-				<tr>
-					<td>海口软件园急聘软件研发工程师</td>
-					<td>
+				</thead>
+				<tbody>
+					<tr>
+					<td>111111haha@qq.com</td>
+					<td>13012345678</td>
+					<td>旋风小子</td>
+					<td class="text-center">
 						<button class="btn btn-default btn-sm">查看</button>
 					</td>
-					<td>2019-09-01</td>
-					<td>java工程师</td>
-					<td>海口软件园有限公司</td>
-					<td>待审</td>
-					<td>
-						<button>发布</button>
-						<button>删除</button>
-					</td>
-				</tr>
-				<tr>
-					<td>网易招聘前端工程师</td>
-					<td>
-						<button class="btn btn-default btn-sm">查看</button>
-					</td>
-					<td>2019-09-02</td>
-					<td>前端工程师</td>
-					<td>上海网易有限公司</td>
-					<td>已发布</td>
-					<td>
-						<button>撤回</button>
-						<button>删除</button>
+					<td>2019-01-01</td>
+					<td>审核</td>
+					<td class="text-center">
+						<a href="javascript:;" class="btn btn-success btn-sm">通过</a>
+						<a href="javascript:;" class="btn btn-danger btn-sm">删除</a>
 					</td>
 				</tr>
 				<tr>
-					<td>网易招聘后端工程师</td>
-					<td>
+					<td>2222222haha@qq.com</td>
+					<td>13012345789</td>
+					<td>旋风大子</td>
+					<td class="text-center">
 						<button class="btn btn-default btn-sm">查看</button>
 					</td>
-					<td>2019-09-02</td>
-					<td>后端工程师</td>
-					<td>上海网易有限公司</td>
-					<td>已发布</td>
-					<td>
-						<button>撤回</button>
-						<button>删除</button>
+					<td>2019-01-01</td>
+					<td>激活</td>
+					<td class="text-center">
+						<a href="javascript:;" class="btn btn-danger btn-sm">删除</a>
 					</td>
 				</tr>
-				
-			</table>
+				</tbody>
+			</table>	
 		</div>
 	</div>
 
@@ -141,10 +122,10 @@
 			<li class="active">
 				<a data-toggle="collapse" class=" collapse " aria-expanded="true"  href="#menu-manage"><i class="fa fa-bars"></i>管理<i class="fa fa-angle-right"></i></a>
 				<ul class="collapse in" id="menu-manage">
-					<li ><a href="companies.html">企业用户</a></li>
-					<li ><a href="customers.html">个人用户</a></li>
-					<li ><a href="catergories.html">职位目录</a></li>
-					<li class="active"><a href="posts.html">帖子</a></li>
+					<li><a href="companies.html">企业用户</a></li>
+					<li class="active"><a href="customers.html">个人用户</a></li>
+					<li><a href="catergories.html">职位目录</a></li>
+					<li><a href="posts.html">帖子</a></li>
 
 				</ul>
 			</li>
@@ -153,7 +134,6 @@
 				<ul class="collapse" id="menu-setting">
 					<li><a href="companies.html">企业用户</a></li>
 					<li><a href="customers.html">个人用户</a></li>
-					<li><a href="catergories.html">分类</a></li>
 					<li><a href="posts.html">帖子</a></li>
 				</ul>
 			</li>

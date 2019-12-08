@@ -214,3 +214,7 @@
 			background-color: #fff;
 		}
 		
+
+		.main > .container-fluid td {
+			vertical-align: middle;
+		}

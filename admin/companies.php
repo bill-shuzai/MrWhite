@@ -28,7 +28,7 @@
 		</nav>
 
 		<div class="container-fluid">
-			<h3>个人用户</h3>
+			<h3>企业用户</h3>
 			<div class="row">
 				<div class="col-md-8">
 					<form class="form-inline" autocomplete="off" novalidate >
@@ -66,42 +66,33 @@
 				</div>
 			</div>	
 			<table class="table table-bordered table-striped table-hover">
-				<tr>
+				<thead>
+					<tr>
 					<th>邮箱</th>
 					<th>联系电话</th>
-					<th>昵称</th>
-					<th class="text-center">简介</th>
-					<th>创建时间</th>
+					<th>企业名称</th>
+					<th class="text-center">企业信息</th>
+					<th>注册时间</th>
 					<th>状态</th>
 					<th class="text-center">操作</th>
 				</tr>
-				<tr>
-					<td>111111haha@qq.com</td>
-					<td>13012345678</td>
-					<td>旋风小子</td>
+				</thead>
+				<tbody>
+					<tr>
+					<td>hahah@email.com</td>
+					<td>12345678901</td>		
+					<td>海口软件园</td>
 					<td class="text-center">
-						<button class="btn btn-default btn-sm">查看</button>
+						<a href="javascript:;" class="btn btn-default btn-sm">查看</a>
 					</td>
-					<td>2019-01-01</td>
-					<td>审核</td>
+					<td>2019-09-01</td>		
+					<td>待审核</td>
 					<td class="text-center">
 						<a href="javascript:;" class="btn btn-success btn-sm">通过</a>
 						<a href="javascript:;" class="btn btn-danger btn-sm">删除</a>
 					</td>
 				</tr>
-				<tr>
-					<td>2222222haha@qq.com</td>
-					<td>13012345789</td>
-					<td>旋风大子</td>
-					<td class="text-center">
-						<button class="btn btn-default btn-sm">查看</button>
-					</td>
-					<td>2019-01-01</td>
-					<td>激活</td>
-					<td class="text-center">
-						<a href="javascript:;" class="btn btn-danger btn-sm">删除</a>
-					</td>
-				</tr>
+				</tbody>
 			</table>	
 		</div>
 	</div>
@@ -118,8 +109,8 @@
 			<li class="active">
 				<a data-toggle="collapse" class=" collapse " aria-expanded="true"  href="#menu-manage"><i class="fa fa-bars"></i>管理<i class="fa fa-angle-right"></i></a>
 				<ul class="collapse in" id="menu-manage">
-					<li><a href="companies.html">企业用户</a></li>
-					<li class="active"><a href="customers.html">个人用户</a></li>
+					<li class="active"><a href="companies.html">企业用户</a></li>
+					<li ><a href="customers.html">个人用户</a></li>
 					<li><a href="catergories.html">职位目录</a></li>
 					<li><a href="posts.html">帖子</a></li>
 
@@ -130,6 +121,7 @@
 				<ul class="collapse" id="menu-setting">
 					<li><a href="companies.html">企业用户</a></li>
 					<li><a href="customers.html">个人用户</a></li>
+					<li><a href="catergories.html">分类</a></li>
 					<li><a href="posts.html">帖子</a></li>
 				</ul>
 			</li>
