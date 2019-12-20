@@ -9208,3 +9208,11 @@ if ( typeof noGlobal === strundefined ) {
 return jQuery;
 
 }));
+
+
+$(document).ajaxStart(function(){
+	NProgress.start();
+}).ajaxStop(function(){
+	NProgress.done();
+});
+

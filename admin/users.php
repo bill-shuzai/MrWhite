@@ -1,10 +1,8 @@
 <?php  
-	require_once '../functions.php';
-
-	
+require_once '../functions.php';
 
 
-
+$managers=white_fetch_all('select * from manager;');
 
 
 
@@ -13,9 +11,11 @@
 
 
 
-	current_manager();
 
-	
+
+current_manager();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +43,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="user-form col-md-4 col-lg-5">
-					<form class="form-horizontal">
+					<form class="form-horizontal" autocomplete="off" novalidate >
 						<h2>注册管理员用户</h2>
 						<!-- 验证失败信息 -->
 						<!-- <div class="alert alert-danger" role="alert">请完善用户信息！</div> -->
@@ -65,26 +65,7 @@
 								<input type="password" class="form-control" id="nickName" placeholder="请输入昵称">
 							</div>
 						</div>
-						<div class="form-radio form-group ">
-								<div class="radio">
-									<label>
-										<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-										状态1
-									</label>
-								</div>
-								<div class="radio">
-									<label>
-										<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-										状态2
-									</label>
-								</div>
-								<div class="radio">
-									<label>
-										<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-										状态3
-									</label>
-								</div>
-							</div>
+						
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10 ">
 								<button type="submit" class="btn btn-default ">注册</button>
@@ -108,39 +89,19 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-center"><input type="checkbox"></td>
-								<td>test1@qq.com</td>
-								<td>小林</td>
-								<td>2019-12-20</td>
-								<td>actived</td>
-								<td class="text-center">
-									<a href="#" class="btn btn-default btn-sm">编辑</a>
-									<a href="#" class="btn btn-danger btn-sm">删除</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="text-center"><input type="checkbox"></td>
-								<td>test2@qq.com</td>
-								<td>小壁</td>
-								<td>2019-12-20</td>
-								<td>actived</td>
-								<td class="text-center">
-									<a href="#" class="btn btn-default btn-sm">编辑</a>
-									<a href="#" class="btn btn-danger btn-sm">删除</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="text-center"><input type="checkbox"></td>
-								<td>test1@qq.com</td>
-								<td>小辉</td>
-								<td>2019-12-20</td>
-								<td>actived</td>
-								<td class="text-center">
-									<a href="#" class="btn btn-default btn-sm">编辑</a>
-									<a href="#" class="btn btn-danger btn-sm">删除</a>
-								</td>
-							</tr>
+							<?php foreach ($managers as $item): ?>
+								<tr>
+									<td class="text-center"><input type="checkbox"></td>
+									<td><?php echo $item['email'] ?></td>
+									<td><?php echo $item['nickname']; ?></td>
+									<td><?php echo $item['created']; ?></td>
+									<td><?php echo $item['status']; ?></td>
+									<td class="text-center">
+										<a href="#" class="btn btn-default btn-sm">编辑</a>
+										<a href="#" class="btn btn-danger btn-sm">删除</a>
+									</td>
+								</tr>
+							<?php endforeach ?>
 						</tbody>
 					</table>
 				</div>

@@ -19,7 +19,7 @@ function login(){
 
 	$conn=mysqli_connect(WHITE_DB_HOST,WHITE_DB_USER,WHITE_DB_PASS,WHITE_DB_NAME);
 	if (!$conn) {
-		 exit('数据库连接失败');
+		exit('数据库连接失败');
 	}
 
 	$query=mysqli_query($conn,"select * from manager where email ='{$email}' limit 1;");
@@ -48,6 +48,7 @@ function login(){
 
 	header('Location:/MrWhite/admin/');
 
+
 }
 
 
@@ -61,6 +62,10 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 	login();
 }
 
+if ($_SERVER['REQUEST_METHOD']=='GET'&& isset($_GET['action']) && $_GET['action']=='logout') {
+	unset($_SESSION['current_login_manager']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -71,16 +76,16 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>login</title>
 	<link rel="stylesheet" type="text/css" href="/MrWhite/static/assets/vendors/bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="/MrWhite/static/assets/css/admin.css">
 	<link rel="stylesheet" type="text/css" href="/MrWhite/static/assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/MrWhite/static/assets/vendors/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/MrWhite/static/assets/vendors/nprogress/nprogress.css">
+	<link rel="stylesheet" type="text/css" href="/MrWhite/static/assets/css/admin.css">
 	<!-- [if lt IE 9] -->
 	<script src="/MrWhite/static/assets/vendors/html5shiv/html5shiv.js"></script>
 	<script src="/MrWhite/static/assets/vendors/respond/respond.min.js"></script>
 	<!-- [endif] -->
-	<style type="text/css">
-		
-	</style>
+	
+	
 </head>
 <body>
 	<div class="login">
@@ -104,11 +109,19 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 		</div>
 	</body>
 	<script type="text/javascript" src="/MrWhite/static/assets/vendors/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/MrWhite/static/assets/vendors/nprogress/nprogress.js"></script>
 	<script type="text/javascript">
-		$(function(){
+		$(function($){
+
+			// $(document).ajaxStart(function(){
+			// 	NProgress.start();
+			// }).ajaxStop(function(){
+			// 	NProgress.done();
+			// });
+
 			var $email=$('#email');
 			var reg=/[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-z]+){1,2}/;
-			var $avatar=$('.login>.avatar');
+			var $avatar=$('.avatar');
 
 			$email.on('blur',function(){
 				var value=$(this).val();
@@ -116,20 +129,28 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 				if(!value.trim()||!reg.test(value)){
 					if($avatar.attr('src')!='/MrWhite/static/assets/imgs/default.png'){
 						$avatar.fadeOut(function(){
-							$(this).attr('src',value).on('load',function(){
+							$(this).attr('src','/MrWhite/static/assets/imgs/default.png').on('load',function(){
 								$(this).fadeIn();
 							});
-						})
+						});
 					}
 					return;
 				}
 
 
 				// 使用ajax把邮箱账号传递过去然后获取头像地址
-				$.get('api/avatar.php',{email : value},function(res){
+				$.get('/MrWhite/admin/api/avatar.php',{email : value},function(res){
 					if(!res){
+						if($avatar.attr('src')!='/MrWhite/static/assets/imgs/default.png'){
+							$avatar.fadeOut(function(){
+								$(this).attr('src','/MrWhite/static/assets/imgs/default.png').on('load',function(){
+									$(this).fadeIn();
+								});
+							});
+						}
 						return;
 					}
+					// console.log(res);
 					$avatar.fadeOut(function() {
 						$(this).attr('src',res).on('load',function(){
 							$(this).fadeIn();
@@ -139,8 +160,6 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 				
 				
 			});
-
-
 
 		});
 	</script>
