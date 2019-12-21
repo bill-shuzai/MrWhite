@@ -1,9 +1,15 @@
+<?php 
+require_once '../config.php';
 
+
+$current_manager=current_manager();
+
+?>
 
 <div class="aside">
 		<div class="profile">
-			<img class="avatar" src="/MrWhite/static/assets/imgs/default.png">
-			<h3 class="name">用户名</h3>
+			<img class="avatar" src=<?php echo $current_manager['avatar']; ?>>
+			<h3 class="name"><?php echo $current_manager['nickname'] ?></h3>
 		</div>
 		<ul class="nav">
 			<li <?php echo $_SERVER['PHP_SELF']=='/MrWhite/admin/index.php'? 'class="active"' : ''; ?>><a href="index.php"><i class="fa fa-pencil-square-o"></i>首页</a></li>

@@ -42,6 +42,24 @@ function white_fetch_all($sql){
 /*从数据库查询一条数据*/
 
 function white_fetch_one($sql){
-	$row=xiu_fetch_all($sql)[0]?xiu_fetch_all($sql)[0]:null;
+	$row=white_fetch_all($sql)[0]?white_fetch_all($sql)[0]:null;
 	return $row;
+}
+
+/*执行数据库执行语句*/
+function white_fetch_excute($sql){
+	$conn=mysqli_connect(WHITE_DB_HOST,WHITE_DB_USER,WHITE_DB_PASS,WHITE_DB_NAME);
+
+	if (!$conn) {
+		exit('数据库连接失败');
+	}
+
+	$query=mysqli_query($conn,$sql);
+
+	if(!$query){
+		return;
+	}
+
+	$rows=mysqli_affected_rows($conn);
+	return $rows;
 }
