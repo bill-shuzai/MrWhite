@@ -1,7 +1,5 @@
 <?php  
-	require_once '../functions.php';
-
-	
+require_once '../functions.php';
 
 
 
@@ -13,9 +11,19 @@
 
 
 
-	current_manager();
 
-	
+
+current_manager();
+
+if (!$_POST['username']) {
+	$personal_users=white_fetch_all('select * from personal_users;');
+}else{
+	$username=$_POST['username'];
+	$personal_users=white_fetch_all("select * from personal_users where nickname like '%"."$username"."%' ;");
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -45,11 +53,11 @@
 			<h3>个人用户</h3>
 			<div class="row">
 				<div class="col-md-8">
-					<form class="form-inline" autocomplete="off" novalidate >
+					<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method='post' class="form-inline" autocomplete="off" novalidate >
 						<div class="form-group">
-							<label for="username" class="col-sm-3 control-label sr-only">邮箱：</label>
+							<label for="username" class="col-sm-3 control-label sr-only">用户名：</label>
 
-							<input type="text" class="form-control" id="username" placeholder="输入用户名">
+							<input type="text" class="form-control" name="username" id="username" placeholder="输入用户名">
 
 						</div>
 						<div class="form-group">
@@ -82,43 +90,51 @@
 			<table class="table table-bordered table-striped table-hover">
 				<thead>
 					<tr>
-					<th>邮箱</th>
-					<th>联系电话</th>
-					<th>昵称</th>
-					<th class="text-center">简介</th>
-					<th>创建时间</th>
-					<th>状态</th>
-					<th class="text-center">操作</th>
-				</tr>
+						<th>邮箱</th>
+						<th>联系电话</th>
+						<th>昵称</th>
+						<th class="text-center">简介</th>
+						<th class="text-center">创建时间</th>
+						<th>状态</th>
+						<th class="text-center">操作</th>
+					</tr>
 				</thead>
 				<tbody>
-					<tr>
-					<td>111111haha@qq.com</td>
-					<td>13012345678</td>
-					<td>旋风小子</td>
-					<td class="text-center">
-						<button class="btn btn-default btn-sm">查看</button>
-					</td>
-					<td>2019-01-01</td>
-					<td>审核</td>
-					<td class="text-center">
-						<a href="javascript:;" class="btn btn-success btn-sm">通过</a>
-						<a href="javascript:;" class="btn btn-danger btn-sm">删除</a>
-					</td>
-				</tr>
-				<tr>
-					<td>2222222haha@qq.com</td>
-					<td>13012345789</td>
-					<td>旋风大子</td>
-					<td class="text-center">
-						<button class="btn btn-default btn-sm">查看</button>
-					</td>
-					<td>2019-01-01</td>
-					<td>激活</td>
-					<td class="text-center">
-						<a href="javascript:;" class="btn btn-danger btn-sm">删除</a>
-					</td>
-				</tr>
+					<?php foreach ($personal_users as $item): ?>
+						<tr>
+							<td><?php echo $item['email']; ?></td>
+							<td><?php echo $item['number']; ?></td>
+							<td><?php echo $item['nickname']; ?></td>
+							<td class="text-center">
+								<!-- Button trigger modal -->
+								<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal<?php echo $item['id']; ?>">
+									查看
+								</button>
+								<div class="modal fade" id="myModal<?php echo $item['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<h4 class="modal-title" id="myModalLabel"><?php echo $item['nickname']; ?>的个人简介</h4>
+											</div>
+											<div class="modal-body">
+												<?php echo $item['info']; ?>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+							<td class="text-center"><?php echo $item['created']; ?></td>
+							<td><?php echo $item['status']; ?></td>
+							<td class="text-center">
+								<a href="/MrWhite/admin/customer-change-status.php?id=<?php echo $item['id']; ?>&status=<?php echo $item['status']; ?>" class="btn <?php echo $item['status']=='actived' ?'btn-danger' : 'btn-success' ?> btn-sm"><?php echo $item['status']=='actived'? '审核': '通过' ?></a>
+								<a href="/MrWhite/admin/customer-delete.php?id=<?php echo $item['id']; ?>" class="btn btn-danger btn-sm">删除</a>
+							</td>
+						</tr>
+					<?php endforeach ?>
 				</tbody>
 			</table>	
 		</div>

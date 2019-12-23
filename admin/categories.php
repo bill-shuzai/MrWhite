@@ -1,7 +1,5 @@
 <?php  
-	require_once '../functions.php';
-
-	
+require_once '../functions.php';
 
 
 
@@ -13,9 +11,13 @@
 
 
 
-	current_manager();
 
-	
+
+current_manager();
+
+$categories=white_fetch_all('select * from categories;');
+$parent_categories=white_fetch_all('select * from categories where parent_id=0;');
+
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +51,7 @@
 						<!-- 验证失败信息 -->
 						<!-- <div class="alert alert-danger" role="alert">请完善用户信息！</div> -->
 						<div class="form-group">
-							<label for="category_name" class="col-sm-3 control-label">邮箱：</label>
+							<label for="category_name" class="col-sm-3 control-label">分类：</label>
 							<div class="col-sm-9">
 								<input type="email" class="form-control" id="category_name" placeholder="请输入类名">
 							</div>
@@ -58,10 +60,9 @@
 							<label for="parent_name" class="col-sm-3 control-label">父类：</label>
 							<div class="col-sm-8">
 								<select id="parent_name" class="form-control">
-									<option>选择父类</option>
-									<option>作为父类</option>
-									<option>web开发</option>
-									<option>运维</option>
+									<?php foreach ($parent_categories as $item): ?>
+										<option><?php echo $item['name']; ?></option>
+									<?php endforeach ?>
 								</select>
 							</div>
 						</div>
@@ -69,13 +70,13 @@
 							<div class="radio">
 								<label>
 									<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-									状态1
+									actived
 								</label>
 							</div>
 							<div class="radio">
 								<label>
 									<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-									状态2
+									wait
 								</label>
 							</div>
 						</div>
@@ -87,9 +88,20 @@
 					</form>
 				</div>
 				<div class="user-table col-md-8 col-lg-7">
+
 					<div class="fold-btn">
 						<a href="#" class="btn btn-danger" style="display: none;">批量删除</a>
 					</div>
+					<form class="form-inline">
+						<span>选择分类：</span>
+						<select class="form-control">
+							<option>所有</option>
+							<?php foreach ($parent_categories as $item): ?>
+								<option><?php echo $item['name']; ?></option>
+							<?php endforeach ?>
+						</select>
+						<button type="submit" class="btn btn-default">筛选</button>
+					</form>
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
 							<tr>
@@ -101,30 +113,28 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="text-center"><input type="checkbox"></td>
-								<td>web开发</td>
-								<td></td>	
-								<td>激活</td>
-								<td class="text-center"><a class="btn btn-danger btn-sm" href="javascript:;">删除</a></td>
-							</tr>
-							<tr>
-								<td class="text-center"><input type="checkbox"></td>
-								<td>前端工程师</td>
-								<td>web开发</td>	
-								<td>激活</td>
-								<td class="text-center"><a class="btn btn-danger btn-sm" href="javascript:;">删除</a></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>	
+							<?php foreach ($categories as $item): ?>
+								<tr>
+									<td class="text-center"><input type="checkbox"></td>
+									<td><?php echo $item['name']; ?></td>
+									<td><?php echo $item['parent_id']==0? '' : 
+									 $categories[array_search($item['parent_id'], array_column($categories,'id'))]['name'] ; ?></td>	
+									<td><?php echo $item['status']; ?></td>
+									<td class="text-center">
+										<a class="btn btn-default btn-sm" href="javascript:;">编辑</a>
+										<a class="btn btn-danger btn-sm" href="javascript:;">删除</a></td>
+									</tr>
+								<?php endforeach ?>
+							</tbody>
+						</table>
+					</div>
+				</div>	
+			</div>
 		</div>
-	</div>
 
 
-	<?php require_once 'inc/aside.php'; ?>
-	<script src="/MrWhite/static/assets/vendors/jquery/jquery.min.js"></script>
-	<script src="/MrWhite/static/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>
+		<?php require_once 'inc/aside.php'; ?>
+		<script src="/MrWhite/static/assets/vendors/jquery/jquery.min.js"></script>
+		<script src="/MrWhite/static/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+	</body>
+	</html>

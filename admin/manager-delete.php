@@ -6,6 +6,8 @@
 		return;
 	}
 
-	white_fetch_excute("delete from manager where id='{$_GET['id']}'");
+	$id=$_GET['id'];
+
+	white_fetch_excute('delete from manager where id in ('.$id.');');
 
 	header('Location:/MrWhite/admin/users.php');

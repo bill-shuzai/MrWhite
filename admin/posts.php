@@ -1,7 +1,5 @@
 <?php  
-	require_once '../functions.php';
-
-	
+require_once '../functions.php';
 
 
 
@@ -13,9 +11,27 @@
 
 
 
-	current_manager();
 
-	
+
+current_manager();
+
+$posts=white_fetch_all('select 
+	posts.id,
+	posts.created,
+	posts.contents,
+	posts.contact_email,
+	posts.contact_number,
+	posts.status,
+	posts.headline,
+	categories.name as category_name,
+	company_users.name as company_name
+ from posts
+ inner join categories on posts.id = categories.id
+ inner join company_users on posts.id = company_users.id
+ ;');
+
+$category_parents=white_fetch_all('select * from categories where parent_id=0');
+
 ?>
 
 <!DOCTYPE html>
@@ -46,19 +62,14 @@
 			<div class="row">
 				<div class="col-md-8">
 					<form class="form-inline">
-						<select class="form-control">
-							<option>类型</option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
+						<select class="form-control category-parents">
+							<option>所有</option>
+							<?php foreach ($category_parents as $item): ?>
+							<option data-id="<?php echo $item['id']; ?>" ><?php echo $item['name']; ?></option>	
+							<?php endforeach ?>
 						</select>
-						<select class="form-control">
+						<select class="form-control category-children" >
 							<option>职位</option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
 						</select>
 						<button type="submit" class="btn btn-default">筛选</button>
 
@@ -88,59 +99,54 @@
 			</div>
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
-					<tr>
-					<th>标题</th>
-					<th>内容</th>
-					<th>发布时间</th>
-					<th>招聘职位</th>
-					<th>发布方</th>
-					<th>状态</th>
-					<th>操作</th>
-				</tr>
+					<tr >
+						<th>标题</th>
+						<th class="text-center">内容</th>
+						<th>发布时间</th>
+						<th>招聘职位</th>
+						<th>发布方</th>
+						<th>状态</th>
+						<th class="text-center">操作</th>
+					</tr>
 				</thead>
 				<tbody>
-					<tr>
-					<td>海口软件园急聘软件研发工程师</td>
-					<td>
-						<button class="btn btn-default btn-sm">查看</button>
-					</td>
-					<td>2019-09-01</td>
-					<td>java工程师</td>
-					<td>海口软件园有限公司</td>
-					<td>待审</td>
-					<td>
-						<button>发布</button>
-						<button>删除</button>
-					</td>
-				</tr>
-				<tr>
-					<td>网易招聘前端工程师</td>
-					<td>
-						<button class="btn btn-default btn-sm">查看</button>
-					</td>
-					<td>2019-09-02</td>
-					<td>前端工程师</td>
-					<td>上海网易有限公司</td>
-					<td>已发布</td>
-					<td>
-						<button>撤回</button>
-						<button>删除</button>
-					</td>
-				</tr>
-				<tr>
-					<td>网易招聘后端工程师</td>
-					<td>
-						<button class="btn btn-default btn-sm">查看</button>
-					</td>
-					<td>2019-09-02</td>
-					<td>后端工程师</td>
-					<td>上海网易有限公司</td>
-					<td>已发布</td>
-					<td>
-						<button>撤回</button>
-						<button>删除</button>
-					</td>
-				</tr>
+					<?php foreach ($posts as $item): ?>
+						<tr>
+							<td><?php echo $item['headline']; ?></td>
+							<td class="text-center">
+								<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal<?php echo $item['id']; ?>">
+									查看
+								</button>
+								<div class="modal fade" id="myModal<?php echo $item['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<h4 class="modal-title" id="myModalLabel">"<?php echo $item['headline']; ?>"帖子内容</h4>
+											</div>
+											<div class="modal-body">
+												<p><?php echo $item['contents']; ?></p>
+												<p>联系电话：<?php echo $item['contact_number']; ?></p>
+												<p>联系邮箱：<?php echo $item['contact_email']; ?></p>
+												
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+							<td><?php echo $item['created']; ?></td>
+							<td><?php echo $item['category_name']; ?></td>
+							<td><?php echo $item['company_name']; ?></td>
+							<td><?php echo $item['status']; ?></td>
+							<td class="text-center">
+								<a href="/MrWhite/admin/post-change-status.php?id=<?php echo $item['id']; ?>&status=<?php echo $item['status']; ?>" class="btn <?php echo $item['status']=='actived' ?'btn-danger' : 'btn-success' ?> btn-sm"><?php echo $item['status']=='actived'? '审核': '通过' ?></a>
+								<a href="/MrWhite/admin/post-delete.php?id=<?php echo $item['id']; ?>" class="btn btn-danger btn-sm">删除</a>
+							</td>
+						</tr>
+					<?php endforeach ?>
 				</tbody>
 				
 			</table>
@@ -152,5 +158,13 @@
 	
 	<script src="/MrWhite/static/assets/vendors/jquery/jquery.min.js"></script>
 	<script src="/MrWhite/static/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(function($){
+			var $select_category_parent=$('.category_parents');
+			var $select_category_children=$('.category_children');
+			
+			
+		});
+	</script>
 </body>
 </html>

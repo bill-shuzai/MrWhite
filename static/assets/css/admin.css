@@ -155,6 +155,9 @@
 			margin-right:5px; 
 		}
 
+		.main .fold-btn {
+			margin-bottom: 20px;
+		}
 
 		/*======users form=====*/
 
@@ -187,6 +190,9 @@
 			padding-left: 60px;
 		}
 
+
+		
+
 		/*=======user table========*/
 
 		.main > .container-fluid > .row > .user-table {
@@ -197,6 +203,8 @@
 		.main > .container-fluid > .row > .user-table > .table {
 			background-color: #fff;
 		}
+
+		
 
 
 		/*===========posts part============*/

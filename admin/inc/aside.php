@@ -13,7 +13,7 @@ $current_manager=current_manager();
 		</div>
 		<ul class="nav">
 			<li <?php echo $_SERVER['PHP_SELF']=='/MrWhite/admin/index.php'? 'class="active"' : ''; ?>><a href="index.php"><i class="fa fa-pencil-square-o"></i>首页</a></li>
-			<li <?php echo $_SERVER['PHP_SELF']=='/MrWhite/admin/users.php'? 'class="active"' : ''; ?>><a href="users.php"><i class="fa fa-users"></i>用户</a></li>
+			<li <?php echo $_SERVER['PHP_SELF']=='/MrWhite/admin/users.php'? 'class="active"' : ''; ?>><a href="users.php"><i class="fa fa-users"></i>管理员</a></li>
 			<?php $menu_manage=array('/MrWhite/admin/companies.php','/MrWhite/admin/customers.php','/MrWhite/admin/categories.php','/MrWhite/admin/posts.php'); ?>
 			
 			<li <?php echo in_array($_SERVER['PHP_SELF'],$menu_manage) ? 'class="active"' : ''; ?>>

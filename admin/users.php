@@ -197,7 +197,7 @@ current_manager();
 					</div>
 					<div class="user-table col-md-8 col-lg-7">
 						<div class="fold-btn">
-							<a href="#" class="btn btn-danger" style="display: none;">批量删除</a>
+							<a href="/MrWhite/admin/manager-delete.php" class="btn btn-danger delete-btn" style="display: none;">批量删除</a>
 						</div>
 						<table class="table table-striped table-bordered table-hover">
 							<thead>
@@ -213,7 +213,7 @@ current_manager();
 							<tbody>
 								<?php foreach ($managers as $item): ?>
 									<tr>
-										<td class="text-center"><input type="checkbox"></td>
+										<td class="text-center"><input data-id="<?php echo $item[id] ?>" type="checkbox"></td>
 										<td><?php echo $item['email'] ?></td>
 										<td><?php echo $item['nickname']; ?></td>
 										<td><?php echo $item['created']; ?></td>
@@ -236,5 +236,33 @@ current_manager();
 
 		<script src="/MrWhite/static/assets/vendors/jquery/jquery.min.js"></script>
 		<script src="/MrWhite/static/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(function($){
+				var checkArr=[];
+				$checkBox=$('tbody input');
+				$checkAll=$('thead input');
+				$deleteBtn=$('.delete-btn');
+
+				$checkBox.on('change',function(){
+					var id=$(this).data('id');
+					if($(this).prop('checked')){
+						checkArr.indexOf(id)!== -1 || checkArr.push(id);
+					}else{
+						checkArr.splice(checkArr.indexOf(id),1);
+					}
+					checkArr.length ? $deleteBtn.fadeIn():$deleteBtn.fadeOut();
+
+					$deleteBtn.prop('search','?id='+checkArr);
+				});
+
+				
+
+				$checkAll.on('change',function(){
+					var checked=$(this).prop('checked');
+					$checkBox.prop('checked',checked).trigger('change');
+				})
+
+			});
+		</script>
 	</body>
 	</html>
