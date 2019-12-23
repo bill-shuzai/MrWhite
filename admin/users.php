@@ -239,9 +239,9 @@ current_manager();
 		<script type="text/javascript">
 			$(function($){
 				var checkArr=[];
-				$checkBox=$('tbody input');
-				$checkAll=$('thead input');
-				$deleteBtn=$('.delete-btn');
+				var $checkBox=$('tbody input');
+				var $checkAll=$('thead input');
+				var $deleteBtn=$('.delete-btn');
 
 				$checkBox.on('change',function(){
 					var id=$(this).data('id');

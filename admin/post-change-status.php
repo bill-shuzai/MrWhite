@@ -1,6 +1,9 @@
 <?php 
 	require_once '../functions.php';
 
+
+	current_manager();
+	
 	if (!$_GET['id']) {
 		return;
 	}

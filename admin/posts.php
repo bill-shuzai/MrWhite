@@ -43,6 +43,7 @@ $category_parents=white_fetch_all('select * from categories where parent_id=0');
 	<title>index</title>
 	<link rel="stylesheet" type="text/css" href="/MrWhite/static/assets/vendors/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="/MrWhite/static/assets/vendors/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/MrWhite/static/assets/vendors/nprogress/nprogress.css">
 	<link rel="stylesheet" type="text/css" href="/MrWhite/static/assets/css/admin.css">
 	<link rel="stylesheet" type="text/css" href="/MrWhite/static/assets/css/style.css">
 	<!-- [if lt IE 9] -->
@@ -62,14 +63,14 @@ $category_parents=white_fetch_all('select * from categories where parent_id=0');
 			<div class="row">
 				<div class="col-md-8">
 					<form class="form-inline">
-						<select class="form-control category-parents">
-							<option>所有</option>
+						<select class="form-control category-parents" name="category-parents">
+							<option value="0">所有</option>
 							<?php foreach ($category_parents as $item): ?>
-							<option data-id="<?php echo $item['id']; ?>" ><?php echo $item['name']; ?></option>	
+							<option value="<?php echo $item['id']; ?>" ><?php echo $item['name']; ?></option>	
 							<?php endforeach ?>
 						</select>
-						<select class="form-control category-children" >
-							<option>职位</option>
+						<select class="form-control category-children" name="category-children">
+							<option value="0" >职位</option>
 						</select>
 						<button type="submit" class="btn btn-default">筛选</button>
 
@@ -156,13 +157,30 @@ $category_parents=white_fetch_all('select * from categories where parent_id=0');
 
 	<?php require_once 'inc/aside.php'; ?>
 	
-	<script src="/MrWhite/static/assets/vendors/jquery/jquery.min.js"></script>
+	<script src="/MrWhite/static/assets/vendors/jquery/jquery.js"></script>
 	<script src="/MrWhite/static/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/MrWhite/static/assets/vendors/nprogress/nprogress.js"></script>
 	<script type="text/javascript">
 		$(function($){
-			var $select_category_parent=$('.category_parents');
-			var $select_category_children=$('.category_children');
+			var $select_category_parent=$('.category-parents');
+			var $select_category_children=$('.category-children');
 			
+
+			$select_category_parent.on('change', function() {
+				var selected=$('.category-parents option:selected');
+				var id=selected.attr('value');
+
+				$.get('/MrWhite/admin/api/category-children.php',{ id:id }, function(res) {
+					var $rows=JSON.parse(res);
+					$select_category_children.html('<option value="0" >职位</option>');
+					for (var i = 0; i < $rows.length; i++) {
+						console.log($rows[i]['name']);
+						$select_category_children.append(
+							"<option value="+$rows[i]['id']+" >"+$rows[i]['name']+"</option>"
+						);
+					}
+				});
+			});
 			
 		});
 	</script>
