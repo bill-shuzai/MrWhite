@@ -178,23 +178,22 @@ $parent_categories=white_fetch_all('select * from categories where parent_id=0;'
 					<div class="user-table col-md-8 col-lg-7">
 
 
-						<form class="form-inline">
+						<form class="form-inline select-form">
 							<span>选择分类：</span>
 							<select class="form-control">
-								<option>所有</option>
+								<option data-id="0" selected>所有</option>
 								<?php foreach ($parent_categories as $item): ?>
-									<option><?php echo $item['name']; ?></option>
+									<option data-id="<?php echo $item['id'] ?>"><?php echo $item['name']; ?></option>
 								<?php endforeach ?>
 							</select>
-							<button type="submit" class="btn btn-default">筛选</button>
+							<button type="button" class="btn btn-default select-btn">筛选</button>
 						</form>
 						<div class="fold-btn">	
-							<a href="/MrWhite/admin/category_delete.php" class="btn btn-danger delete-btn" style="display: none;">批量删除</a>
+							<a href="/MrWhite/admin/category-delete.php" class="btn btn-danger delete-btn" style="display: none;">批量删除</a>
 						</div>
 						<table class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
-									<th class="text-center"><input type="checkbox"></th>
 									<th>名称</th>
 									<th>所属类别</th>
 									<th>状态</th>
@@ -204,14 +203,13 @@ $parent_categories=white_fetch_all('select * from categories where parent_id=0;'
 							<tbody>
 								<?php foreach ($categories as $item): ?>
 									<tr>
-										<td class="text-center"><input data-id="<?php echo $item['id']; ?>" type="checkbox"></td>
 										<td><?php echo $item['name']; ?></td>
 										<td><?php echo $item['parent_id']==0? '主类' : 
 										$categories[array_search($item['parent_id'], array_column($categories,'id'))]['name'] ; ?></td>	
 										<td><?php echo $item['status']; ?></td>
 										<td class="text-center">
 											<a class="btn btn-default btn-sm" href="<?php echo $_SERVER['PHP_SELF']; ?>?id=<?php echo $item['id']; ?>">编辑</a>
-											<a class="btn btn-danger btn-sm" href="/MrWhite/admin/category_delete.php?id=<?php echo $item['id']; ?>">删除</a></td>
+											<a class="btn btn-danger btn-sm" href="/MrWhite/admin/category-delete.php?id=<?php echo $item['id']; ?>">删除</a></td>
 										</tr>
 									<?php endforeach ?>
 								</tbody>
@@ -227,30 +225,27 @@ $parent_categories=white_fetch_all('select * from categories where parent_id=0;'
 			<script src="/MrWhite/static/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
 			<script type="text/javascript">
 				$(function($){
-					var arrayCheck=[];
-					var $checkAll=$('.user-table thead input');
-					var $checkBoxs=$('.user-table tbody input');
-					var $deleteBtn=$('.delete-btn');
+					
 
+					var $selectForm=$('.user-table .select-form');
+					var $selectBtn=$('.user-table .select-form button');
+					var $tbody=$('.user-table tbody');
 
-					$checkBoxs.on('change',function(){
-						var id=$(this).data('id');
-						if($(this).prop('checked')){
-							arrayCheck.indexOf(id)!== -1 || arrayCheck.push(id);
-						}else {
-							arrayCheck.splice(arrayCheck.indexOf(id),1);
-						}
+					$selectBtn.on('click',function(){
+						var id=$('.user-table .select-form option:selected').data('id');
+						$.post('/MrWhite/admin/api/category-show-table.php', { id : id }, function(res) {
+							$rows=JSON.parse(res);
+							$tbody.html('');
+							for (var i = 0; i < $rows.length; i++) {
+								var parentName=$rows[i]['parent_name']? $rows[i]['parent_name']:'主类';
+								$tbody.append("<tr><td>"+$rows[i]['name']+"</td><td>"+parentName+"</td><td>"+$rows[i]['status']+"</td><td class='text-center'><a class='btn btn-default btn-sm' href='/MrWhite/admin/categories.php?id="+$rows[i]['id']+"'>编辑</a> <a class='btn btn-danger btn-sm' href='/MrWhite/admin/category-delete.php?id="+$rows[i]['id']+"'>删除</a></td></tr>");
 
-						arrayCheck.length ? $deleteBtn.fadeIn(): $deleteBtn.fadeOut();
-
-						$deleteBtn.prop('search','?id='+arrayCheck);
+							}
+							
+						});
 
 					});
 
-					$checkAll.on('change',function(){
-						var checked=$(this).prop('checked');
-						$checkBoxs.prop('checked',checked).trigger('change');
-					});
 				});
 			</script>
 		</body>

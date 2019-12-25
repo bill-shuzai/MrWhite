@@ -15,7 +15,27 @@ require_once '../functions.php';
 
 current_manager();
 
-$posts=white_fetch_all('select 
+if ($_SERVER['REQUEST_METHOD']=="POST" && $_POST['category-children']!=0) {
+	$child=$_POST['category-children'];
+	$posts=white_fetch_all("select 
+	posts.id,
+	posts.created,
+	posts.contents,
+	posts.contact_email,
+	posts.contact_number,
+	posts.status,
+	posts.headline,
+	categories.id as category_id,
+	categories.name as category_name,
+	company_users.name as company_name
+	from posts
+	inner join categories on categories_id = categories.id
+	inner join company_users on posts.id = company_users.id
+	where categories.id = '{$child}'
+	;");
+
+}else{
+	$posts=white_fetch_all('select 
 	posts.id,
 	posts.created,
 	posts.contents,
@@ -25,10 +45,13 @@ $posts=white_fetch_all('select
 	posts.headline,
 	categories.name as category_name,
 	company_users.name as company_name
- from posts
- inner join categories on posts.id = categories.id
- inner join company_users on posts.id = company_users.id
- ;');
+	from posts
+	inner join categories on posts.id = categories.id
+	inner join company_users on posts.id = company_users.id
+	;');
+}
+
+
 
 $category_parents=white_fetch_all('select * from categories where parent_id=0');
 
@@ -59,14 +82,14 @@ $category_parents=white_fetch_all('select * from categories where parent_id=0');
 		<?php require_once 'inc/nav.php'; ?>
 
 		<div class="container-fluid">
-			<h3>查看帖子</h3>
+			<h3>查看帖子<span class="tips"></span></h3>
 			<div class="row">
 				<div class="col-md-8">
-					<form class="form-inline">
+					<form action="<?php echo $_SERVER['PHP_FILE']; ?>" method="post" class="form-inline select-form">
 						<select class="form-control category-parents" name="category-parents">
 							<option value="0">所有</option>
 							<?php foreach ($category_parents as $item): ?>
-							<option value="<?php echo $item['id']; ?>" ><?php echo $item['name']; ?></option>	
+								<option value="<?php echo $item['id']; ?>" ><?php echo $item['name']; ?></option>	
 							<?php endforeach ?>
 						</select>
 						<select class="form-control category-children" name="category-children">
@@ -170,17 +193,37 @@ $category_parents=white_fetch_all('select * from categories where parent_id=0');
 				var selected=$('.category-parents option:selected');
 				var id=selected.attr('value');
 
-				$.get('/MrWhite/admin/api/category-children.php',{ id:id }, function(res) {
-					var $rows=JSON.parse(res);
+				if (id!='0') {
+					$.get('/MrWhite/admin/api/category-children.php',{ id:id }, function(res) {
+						var $rows=JSON.parse(res);
+						$select_category_children.html('<option value="0" >职位</option>');
+						for (var i = 0; i < $rows.length; i++) {
+							$select_category_children.append(
+								"<option value="+$rows[i]['id']+" >"+$rows[i]['name']+"</option>"
+								);
+						}
+					});
+				}else {
 					$select_category_children.html('<option value="0" >职位</option>');
-					for (var i = 0; i < $rows.length; i++) {
-						console.log($rows[i]['name']);
-						$select_category_children.append(
-							"<option value="+$rows[i]['id']+" >"+$rows[i]['name']+"</option>"
-						);
-					}
-				});
+				}
 			});
+
+			// var $selectParents=$('.select-form .category-parents');
+			// var $selectChildren=$('.select-form .category-children');
+			// var $selectBtn=$('.select-form button');
+			
+			// $selectParents.on('change',function(){
+			// 	var $selectPa=$('.select-form .category-parents option:selected');
+			// 	$selectPa.attr('selected','').siblings('selector','false');
+
+			// });	
+
+
+			// $selectBtn.on('click',function(){
+			// 	var $selectChildren=$('.select-form .category-children option:selected');
+			// 	var childId=$selectChildren.val();
+				
+			// });
 			
 		});
 	</script>
