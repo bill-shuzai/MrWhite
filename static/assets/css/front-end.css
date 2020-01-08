@@ -1,0 +1,280 @@
+ul {
+	list-style: none;
+}
+
+/* 使表格中多出的字体自动变成省略号 */
+table {
+	table-layout: fixed;
+}
+
+table tr td {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/* 前端首页 */
+
+body {
+	background-color: rgb(248,249,251);
+}
+
+header > .navbar {
+	background-color: rgb(77, 88, 102);
+}
+
+header .navbar-collapse .btn-bar > li > a {
+	color: white;
+	height: 50px;
+	font-size: 18px;
+}
+
+header .navbar-collapse .btn-bar > li > a:hover {
+	color: white;
+	border-bottom: 3px solid white;
+}
+
+
+header .navbar-collapse .btn-bar > li.active-btn > a {
+	color: #ccc;
+	background-color: rgb(35, 43, 54);
+	box-sizing: border-box;
+}
+
+header .navbar-collapse .btn-bar > li.active-btn > a:hover {
+	background-color: rgb(35, 43, 54);
+	color: white;
+}
+
+header .navbar-collapse .login-bar > li > a {
+	color: #ccc;
+	font-size: 10px;
+}
+
+header .navbar-collapse .login-bar > li > a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+header .navbar-brand img {
+	height: 100%;
+	padding: 0;
+}
+
+header .navbar-collapse .btn-bar {
+	margin-left: 10px;
+}
+
+header .navbar-collapse .btn-bar li {
+	margin-right: 10px;
+}
+
+header .navbar > .container .brand-name{
+	line-height: 50px;
+	display: block;
+	margin-left: 10px;
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
+	font-family: STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑";
+}
+
+/* 轮播图 */
+
+.content-header {
+	width: 100%;
+	margin-top: 60px;
+}
+
+.content-header .carousel {
+	box-shadow: 0px 5px 5px;
+}
+
+.content-header > .lunbo	 {
+	height: 400px;
+}
+
+/* 轮播图下面放内容的地方 */
+.content-body {
+	margin-top: 20px;
+}
+
+.content-body .nav {
+	box-shadow: 0px 0px 5px;
+}
+
+.content-body .nav li.active a{
+	background-color: rgb(57, 68, 82);
+	color: white;
+}
+
+.content-body ul.nav span {
+	display: inline-block;
+	line-height: 40px;
+	float: right;
+	margin-right: 30px;
+}
+
+.content-body ul.nav span a{
+	color: darkred;
+	text-decoration: underline
+}
+
+.content-body ul.nav li a{
+	color: rgb(57, 68, 82);
+}
+
+/* 标签页对应的内容 */
+.content-body .content-panel {
+	margin-top: 10px;
+	box-shadow: 0px 0px 5px;
+	margin-bottom: 0px;
+}
+
+.content-body .content-panel table tr th {
+	width: 33.3%;
+}
+
+.content-body .content-panel table tr td {
+	width: 33.3%;
+}
+
+.content-body .content-panel .pagination {
+	margin-top: 5px;
+	float: right;
+	box-shadow: 0px 1px 5px;
+}
+
+/* footer */
+footer {
+	box-shadow: 0px -2px 3px;
+	margin-top: 60px;
+	width: 100%;
+	background-color: rgb(77, 88, 102);
+}
+
+
+footer .container .left {
+	margin: 30px 0;
+	height: 240px;
+	border-right: 2px solid #ccc;
+}
+
+@media screen and (max-width: 767px) {
+    	footer .container .left {
+		border-right: none;
+	}
+}
+
+footer .container .left img {
+	width: 140px;
+	height: 140px;
+	margin-bottom: 20px;
+}
+
+footer .container .left p {
+	color: white;
+	font-size: 20px;
+}
+
+
+footer .container .right {
+	height: 240px;
+	margin: 30px 0;
+}
+
+footer .container .right .links {
+	height: 20px;
+	width: 100%;
+	margin-top: 40px;
+
+}
+
+footer .container .right .links a {
+	color: white;
+}
+
+footer .container .right .links  li {
+	float: left;
+	margin-right: 20px;
+}
+
+footer .container .right .option {
+	margin-top: 20px;
+}
+
+footer .container .right .option li {
+	color: #ccc;
+}
+
+
+/* 登录注册部分 */
+
+.login-content {
+	margin-top: 100px;
+}
+
+.login-content .nav {
+	background-color: rgb(77, 88, 102);
+	border-radius: 5px 5px 0 0;
+}
+
+.login-content .nav li {
+	width: 50%;
+	text-align: center;
+	background-color: rgb(77, 88, 102);
+	border: none;
+}
+
+.login-content .nav li:first-child {
+	border-radius: 5px 0 0 0;
+}
+
+.login-content .nav li:last-child {
+	border-radius: 0 5px 0 0;
+}
+
+.login-content .nav li a {
+	color: #ccc;
+	height: 60px;
+	line-height: 40px;
+	font-size: 20px;
+}
+
+
+
+.login-content .nav li a:hover {
+	background-color: transparent;
+	border: none;
+	color: white;
+}
+
+.login-content .nav li.active a{
+	background-color: rgb(35, 43, 54);
+	color: white;
+	border: none;
+}
+
+.login-content .tab-content .tab-pane {
+	height: 600px;
+	border: 1px solid #ccc;
+	border-radius: 0 0 5px 5px;
+}
+
+.login-content .tab-content .tab-pane  .login-pane{
+	padding:0 100px;
+	margin-top: 150px;
+}
+
+.login-content .tab-content .tab-pane  .resign-pane{
+	padding:0 100px;
+	margin-top: 60px;
+}
+
+.login-content .tab-content .tab-pane textarea {
+	resize: none;
+	width:50%;
+	height: 200px;
+}
+
+

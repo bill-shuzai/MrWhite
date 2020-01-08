@@ -54,7 +54,7 @@ if($_GET['id']){
 
 current_manager();
 
-$categories=white_fetch_all('select * from categories;');
+$categories=white_fetch_all('select * from categories order by parent_id asc;');
 $parent_categories=white_fetch_all('select * from categories where parent_id=0;');
 
 ?>

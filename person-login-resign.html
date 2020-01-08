@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>登录/注册</title>
+	<link rel="stylesheet" type="text/css" href="static/assets/vendors/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="static/assets/vendors/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="static/assets/css/admin.css">
+	<link rel="stylesheet" type="text/css" href="static/assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="static/assets/css/front-end.css">
+	<!-- [if lt IE 9] -->
+	<script src="static/assets/vendors/html5shiv/html5shiv.js"></script>
+	<script src="static/assets/vendors/respond/respond.min.js"></script>
+	<!-- [endif] -->
+	
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">
+						<img src="public/img/whitedog.jpg">
+					</a>
+					<a class="navbar-brand brand-name" href="#">
+						<span>小白程序员求职网</span>
+					</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav btn-bar">
+						<li class="active-btn"><a href="javascript:;">首页<span class="sr-only">(current)</span></a></li>
+						<li><a href="#">修改信息<span class="sr-only">(current)</span></a></li>
+						<li><a href="javascript:;">其它<span class="sr-only">(current)</span></a></li>
+
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right login-bar">
+						<li><a href="javascript:;" class="btn" >登录/注册</a></li>
+
+						<li><a href="javascript:;" class="btn" >企业版登录/注册</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div>
+		</nav>
+	</header>
+	<div class="login-content">
+		<div class="container">
+
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">登录</a></li>
+				<li role="presentation"><a href="#resign" aria-controls="resign" role="tab" data-toggle="tab">注册</a></li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="login">
+					<div class="container row">
+
+						<form class="form-horizontal login-pane">
+							<!-- <div class="alert alert-danger" role="alert">请输入正确信息</div> -->
+							<div class="form-group">
+								<label for="inputAccount" class="col-sm-2 control-label">邮箱/手机号码：</label>
+								<div class="col-sm-10">
+									<input type="text" name="account" class="form-control" id="inputAccount" placeholder="请输入账号">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword" class="col-sm-2 control-label">密码：</label>
+								<div class="col-sm-10">
+									<input type="password" name="password" class="form-control" id="inputPassword" placeholder="请输入密码">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<div class="checkbox" name="remember">
+										<label>
+											<input type="checkbox" value="remember"> 记住我
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="submit" class="btn btn-default btn-success form-control">立即登录</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="resign">
+					<div class="container row">
+						<form class="form-horizontal resign-pane">
+							<!-- <div class="alert alert-danger" role="alert">请输入正确信息</div> -->
+							<div class="form-group">
+								<label for="inputName" class="col-sm-2 control-label">姓名：</label>
+								<div class="col-sm-10">
+									<input type="text" name="name" class="form-control" id="inputName" placeholder="请输入姓名">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail" class="col-sm-2 control-label">邮箱：</label>
+								<div class="col-sm-10">
+									<input type="email" name="email" class="form-control" id="inputEmail" placeholder="请输入邮箱">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputNumber" class="col-sm-2 control-label">手机号码：</label>
+								<div class="col-sm-10">
+									<input type="text" name="number" class="form-control" id="inputNumber" placeholder="请输入手机号码">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword" class="col-sm-2 control-label">密码：</label>
+								<div class="col-sm-10">
+									<input type="password" name="password" class="form-control" id="inputPassword" placeholder="请输入密码">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputInfo" class="col-sm-2 control-label">个人简介：</label>
+								<div class="col-sm-10">
+									<textarea type="password" name="pesonalInfo" class="form-control" id="inputInfo"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="submit" class="btn btn-info form-control">立即注册</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="container ">
+			<div class="row">
+				<div class="left col-lg-5 col-md-5 col-sm-5 text-center">
+					<img  src="public/img/erweima.jpg" alt="二维码" class="img-rounded">
+					<p>扫描二维码,添加公众号</p>
+				</div>
+				<div class="right col-lg-7 col-md-7 col-sm-7">
+					<div class="links">
+						<ul>
+							<li><a href="#">关于我们</a></li>
+							<li><a href="#">意见反馈</a></li>
+							<li><a href="#">联系我们</a></li>
+							<li><a href="#">免责声明</a></li>
+							<li><a href="#">友情链接</a></li>
+						</ul>
+					</div>
+					<div class="option">
+						<ul>
+							<li>公司地址：海南省海口市海南大学海甸校区5栋宿舍126号</li>
+							<li>联系方式：13389821705（电话）475684606@qq.com</li>
+							<li>备案</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</footer>
+	
+</body>
+<script src="static/assets/vendors/jquery/jquery.min.js"></script>
+<script src="static/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+</html>

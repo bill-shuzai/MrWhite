@@ -4170,8 +4170,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
-  /* border: 1px solid transparent; */
-  box-shadow: 0px 0px 5px;
+  border: 1px solid transparent;
 }
 @media (min-width: 768px) {
   .navbar {
@@ -4278,7 +4277,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   height: 50px;
-  /* padding: 15px 15px; */
+  padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
 }
@@ -4524,16 +4523,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .active > a:focus {
   color: #555;
   background-color: #e7e7e7;
-  /* border-bottom: 2px solid #fff; */
 }
-
-a {}
-
-a {}
-
-a {}
-
-a {}
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
 .navbar-default .navbar-nav > .disabled > a:focus {
@@ -6249,7 +6239,6 @@ button.close {
 }
 .carousel {
   position: relative;
-  box-shadow: 0px 6px 10px;
 }
 .carousel-inner {
   position: relative;
